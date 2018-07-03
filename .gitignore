@@ -1,0 +1,20 @@
+## website, db, logs content ##
+/db/*
+/www/*
+/conf/log/*
+
+## OS generated files ##
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+## Editor files ##
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.buildpath
+.project
+.setting/*
+.idea
+.vscode

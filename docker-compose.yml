@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb:latest
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: defaultrootpwd
+      MYSQL_DATABASE: defaultdb
+      MYSQL_USER: defaultuser
+      MYSQL_PASSWORD: defaultpwd
+  phpfpm:
+    build: ./conf/phpfpm/
+    volumes:
+      - ./www:/home/www
+    links:
+      - mariadb
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./conf/www.conf:/etc/nginx/conf.d/www.conf
+      - ./conf/log:/var/log/nginx
+      - ./www:/home/www
+    ports:
+      - 8081:8081
+    links:
+      - phpfpm
